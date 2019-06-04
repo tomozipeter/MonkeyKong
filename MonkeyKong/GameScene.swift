@@ -172,7 +172,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.removeFromParent()
         banana?.removeFromParent()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [unowned self] in
+            let gameOver = SKLabelNode(text: "game - over")
+            gameOver.horizontalAlignmentMode = .center
+            gameOver.fontColor = UIColor.black
+            gameOver.fontSize = 96
+            gameOver.fontName = "Impact"
+            gameOver.position = CGPoint(x: self.size.width / 2.0, y: self.size.height / 2.0)
+            self.addChild(gameOver)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [unowned self] in
             let newGame = GameScene(size: self.size)
             newGame.viewController = self.viewController
             self.viewController?.gameScene = newGame
